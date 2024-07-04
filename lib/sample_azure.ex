@@ -7,10 +7,10 @@ defmodule SampleAzure do
 
   @doc """
   IoT hubにメッセージを送信する。
-  未ログイン時にはtrueを渡す。
+  未ログイン時にはtrueを渡すこと。
   """
-  def send_message(message, without_login \\ false) do
-    if without_login, do: {_, 0} = System.cmd("az", ["login"])
+  def send_message(message, with_login \\ false) do
+    if with_login, do: {_, 0} = System.cmd("az", ["login"])
 
     payload =
       Poison.encode!(%{
